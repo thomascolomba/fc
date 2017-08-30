@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+	  <meta charset="utf-8">
+	  <title>Frise chronologique</title>
+	  <link rel="stylesheet" type="text/css" href="index.css">
+	  <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+	  <script type="text/javascript" src="DateUtils.js"></script>
+	  <script type="text/javascript" src="Timeline.js"></script>
+	  <script type="text/javascript" src="index.js"></script>
+	</head>
+	<body>
+		<h1>Creer votre frise chronologique</h1>
+		<p>
+		Donnees de la frise
+		</p>
+		<textarea id="data" cols="150" rows="10">
+{"startDate":"01/01/2015","endDate":"12/31/2015","arrows":[{"name":"Melenchon","startDate":"01/01/2015","endDate":"12/31/2015"}]}
+</textarea>
+{
+	"startDate" : "01/01/2015",
+	"endDate" : "12/31/2015",
+	"arrows" : [
+		{
+			"name" : "Melenchon",
+			"startDate" : "01/01/2015",
+			"endDate" : "12/31/2015",
+			"threads" : [
+				{
+					"name" : "meeting",
+					"startDate" : "01/01/2015",
+					"endDate" : "12/31/2015",
+					"ponctualEvents" : [
+						{
+							"name" : "passe dans le JDD",
+							"date" : "02/01/2015"
+						},
+						{
+							"name" : "annonce de la candidature aux presidentielles",
+							"date" : "07/05/2015"
+						}
+					]
+				}
+			]
+		}
+	]
+}
+		
+		<input type="button" value="Afficher frise" onclick="afficherFrise()"/>
+		
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<div id="zoneFrise">
+			<p id="titreFrise">
+			frise
+			</p>
+			<br/>
+			<br/>
+			<div id="dessinFrise">
+			</div>
+		</div>
+	</body>
+</html>

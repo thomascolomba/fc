@@ -1,0 +1,44 @@
+#zoneFrise {
+	border:1px solid black;
+	border-radius:5px;
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+	height:800px;
+}
+
+#titreFrise {
+	text-align:center;
+}
+#dessinFrise {
+	height:100%;
+}
+#contentFrise {
+	height:100%;
+}
+
+.arrow {
+	border:1px solid black;
+	margin-top:2px;
+	margin-bottom:2px;
+	background-color:red;
+	border:1px solid black;
+	padding-top:4px;
+	padding-bottom:4px;
+	min-height:30px;
+}
+
+.arrow .arrow-startEndDates .inner-arrow-endDate {
+	float:right;
+}
+
+.arrow .thread {
+	height:1px;
+	background-color:black;
+}
+
+/*.arrow .arrow-startDate {
+	display:inline-block;
+	position:relative;
+	left:0px;
+}*/

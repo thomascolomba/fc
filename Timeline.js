@@ -130,8 +130,11 @@ var Timeline = function(sData, options){
 		
 		display : function(sIdDiv){
 			$("#"+sIdDiv).empty();
-			$("#"+sIdDiv).append("<div id='friseContent'></div>");
-			var jFriseContent = $("#"+"friseContent");
+			$("#"+sIdDiv).append("<div class='friseContent'><div>");
+			console.log($("#"+sIdDiv));
+			console.log($("#"+sIdDiv+" > div"));
+			console.log($("#"+sIdDiv+" > .friseContent"));
+			var jFriseContent = $("#"+sIdDiv+" > .friseContent");
 			_addFriseStartDate(jFriseContent);
 			if(data["arrows"]){
 				for(var iArrowIdx = 0; iArrowIdx < data["arrows"].length; iArrowIdx++){

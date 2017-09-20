@@ -8,13 +8,70 @@
 	padding-top:4px;
 	padding-bottom:4px;
 	min-height:30px;
+	position:relative;
 }
 
 .arrow .arrow-startEndDates .inner-arrow-endDate {
 	float:right;
 }
 
+.friseContent {
+	padding-bottom:30px;
+}
+
+
+.friseContent  .timeAxisContainer {
+	height:10px;
+}
+
+.friseContent .timeAxisContainer > .timeAxis {
+	border-bottom:2px solid black;
+	height:0;
+	margin-top:4px;
+	margin-bottom:4px;
+	float:left;
+	width:100%;
+}
+
+.friseContent .timeAxisHead {
+	width: 0; 
+	height: 0; 
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 5px solid black;
+	position:absolute;
+}
+
+.friseContent > .friseEndDate {
+	float:right;
+}
+
+.friseContent > .friseStartDate {
+	float:left;
+}
+
 .arrow .thread {
 	height:1px;
 	background-color:black;
 }
+
+.arrow-name {
+	width:100%;
+	text-align:center;
+}
+
+
+.arrow-container {
+	width:100%;
+}
+
+.arrow-name-container {
+	width:8%;
+	display:inline-block;
+}
+
+.arrow-body-container {
+	width:90%;
+	display:inline-block;
+}
+

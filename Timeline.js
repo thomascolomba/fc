@@ -24,14 +24,17 @@
 //todo add causality arrows, cross-thread/arrow
 //todo add source field for some data
 //data must be a valid JSON object
+
+
+//genre arrow c est [Europe,USA] threads : [{France, Espagne, Italie},{Hispaniques, Europeens, Africains}]
 var Timeline = function(sData, options){
 	var data;
 	
 	
 	var _validateData = function(){
 		//throws Exception
-		console.log("---sData = ");
-		console.log(sData);
+//		console.log("---sData = ");
+//		console.log(sData);
 		data = $.parseJSON(sData); 
 	};
 	
@@ -84,6 +87,30 @@ var Timeline = function(sData, options){
 		return nbDaysDiff * 100 / nbDays;
 	}
 	
+	var _addArrowContainer = function(jTagReceiving){
+		var $div = $("<div>", {"class": "arrow-container"});
+		jTagReceiving.append($div);
+		return $div;
+	}
+	
+	var _addArrowNameContainer = function(jTagReceiving){
+		var $div = $("<div>", {"class": "arrow-name-container"});
+		jTagReceiving.append($div);
+		return $div;
+	}
+
+	var _addArrowBodyContainer = function(jTagReceiving){
+		var $div = $("<div>", {"class": "arrow-body-container"});
+		jTagReceiving.append($div);
+		return $div;
+	}
+	
+	var _addArrowName = function(oJsonArrow, jTagReceiving){
+		var $div = $("<div>", {id: oJsonArrow["name"], "class": "arrow-name"});
+		$div.append(oJsonArrow["name"]);
+		jTagReceiving.append($div);
+	}
+	
 	var _addArrow = function(oJsonArrow, jTagReceiving){
 		var iArrowWidth = _computeArrowWidth(oJsonArrow);
 		var iArrowLeft = _computeArrowLeft(oJsonArrow);
@@ -115,15 +142,18 @@ var Timeline = function(sData, options){
 		jTagReceiving.append($friseEndDateDiv);
 	}
 	
-	_validateData();
-	console.log("displaying data");
-	console.log(sData);
+	var _addTimeAxis = function(jTagReceiving){
+		var $timeAxisContainer = $("<div>", {"class": "timeAxisContainer"});
+		jTagReceiving.append($timeAxisContainer);
+		var $timeAxis = $("<div>", {"class": "timeAxis"});
+		$timeAxisContainer.append($timeAxis);
+		var $timeAxisHead = $("<span>", {"class": "timeAxisHead"});
+		$timeAxisContainer.append($timeAxisHead);
+	}
 	
-	console.log(data["startDate"]);
-	console.log(data.startDate);
+	_validateData();
+	
 	var nbDays = DateUtils.getNumberOfDaysBetweenTwoDates(data["startDate"], data["endDate"]); 
-	console.log("nbDays = ");
-	console.log(nbDays);
 	
 	
 	return {
@@ -131,19 +161,23 @@ var Timeline = function(sData, options){
 		display : function(sIdDiv){
 			$("#"+sIdDiv).empty();
 			$("#"+sIdDiv).append("<div class='friseContent'><div>");
-			console.log($("#"+sIdDiv));
-			console.log($("#"+sIdDiv+" > div"));
-			console.log($("#"+sIdDiv+" > .friseContent"));
 			var jFriseContent = $("#"+sIdDiv+" > .friseContent");
-			_addFriseStartDate(jFriseContent);
 			if(data["arrows"]){
+				var jArrowContainer = _addArrowContainer(jFriseContent);
+				var jArrowNameContainer = _addArrowNameContainer(jArrowContainer);
 				for(var iArrowIdx = 0; iArrowIdx < data["arrows"].length; iArrowIdx++){
 					var oArrow = data["arrows"][iArrowIdx];
-					_addArrow(oArrow, jFriseContent);
+					_addArrowName(oArrow, jArrowNameContainer);
 				}
+				var jArrowBodyContainer = _addArrowBodyContainer(jArrowContainer);
+				for(var iArrowIdx = 0; iArrowIdx < data["arrows"].length; iArrowIdx++){
+					var oArrow = data["arrows"][iArrowIdx];
+					_addArrow(oArrow, jArrowBodyContainer);
+				}
+				_addTimeAxis(jArrowBodyContainer);
+				_addFriseStartDate(jArrowBodyContainer);
+				_addFriseEndDate(jArrowBodyContainer);
 			}
-			_addFriseEndDate(jFriseContent);
-			
 			
 		}
 	};
